@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoP and Mx/My Visualization</title>
+    <style scoped>
+        /* Parallax section with background image */
+        .parallax-5 {
+            height: 40vh;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Apply background image to parallax-1 */
+        .parallax-5 { 
+            background-image: url('/dsc106_final_project/plots/imgs/plots2.jpeg');
+            background-position: center center; /* Ensure it's centered properly */
+        }
+
+        /* Inner content within the parallax section */
+        .parallax-inner-5 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 50%;
+            color: white;
+            max-width: 100%;
+            text-align: center;
+        }
+
+        #section3 h1 {
+            font-size: 30px;
+            text-align: center;
+            color: white; /* Fixed the color syntax */
+            padding: 1rem;
+            font-size: 2rem;
+            background: rgb(0, 0, 0);
+        }
+
+        p, ul {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin: 20px;
+        }
+            
+        .intro-section {
+            background-color: #f8f8f8;
+            border-left: 4px solid #2c3e50;
+            padding: 15px 10px;
+            margin-bottom: 30px;
+            border-radius: 0 5px 5px 0;
+        }
+            
+        .scenario-box {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+            
+        .scenario-card {
+            flex: 1;
+            margin: 0 10px;
+            padding: 15px;
+            background-color: #f8f8f8;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .scenario-card.scenario-1 {
+            border-top: 4px solid #fc8d59;
+        }
+        
+        .scenario-card.scenario-2 {
+            border-top: 4px solid #99d594;
+        }
+
+        .scenario-card h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+
+        .color-sq {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+            
+        .section-heading {
+            color: #2c3e50;
+            /* border-bottom: 2px solid #2c3e50; */
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+            
+        .action-text {
+            font-weight: bold;
+        }
+
+        .MxPlotAll, .MyPlotAll, .CoPxPlotAll, .CoPyPlotAll {
+          margin: 40px 0;
+          padding: 30px 60px;
+          width: 87%;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          background-color: #f8f8f8;
+        }
+
+        .InteractivePlot {
+          margin: 40px 10px;
+          width: 99%;
+          /* padding: 30px 30px; */
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          background-color: #f8f8f8;
+        }
+
+    </style>
+    <link rel="stylesheet" href="../dsc106_final_project//style.css">
+    <link rel="stylesheet" href="../dsc106_final_project//features/features.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <section id="section3">
+        <div class="parallax-5">
+            <div class="parallax-inner-5">
+                <h1>Visualizations</h1>
+            </div>
+        </div>
+    <br>
+    <!-- <div class="intro-section">
+        <p>Now that we have familiarized ourselves with the motivation and features of this project, let's visualize our data!</p>
+    </div>
+        
+    <h2 class="section-heading">Scenarios Under Analysis</h2>
+        
+    <div class="scenario-box">
+        <div class="scenario-card">
+            <h3>Scenario 1</h3>
+            <p>VR shifting with music playing at 0.1Hz</p>
+        </div>
+        
+        <div class="scenario-card">
+            <h3>Scenario 2</h3>
+            <p>Eyes closed with music at regular speed</p>
+        </div>
+    </div> -->
+    <div class="intro-section">
+        <p>Before we dive into our visualizations, let's take a look at what subjects in the study experienced in their VR environment.
+        To get the full experience, don't forget to hit the play button at the top right of the page to start Mozart's Jupiter! </p>
+    </div>
+
+    <video width="1130" height="800" autoplay loop muted playsinline>
+         <source src="/dsc106_final_project/plots/imgs/vr_environment.mp4" type="video/mp4">
+       </video>
+    <!-- <div class="background-video-wrapper">
+        <video class="background-video" preload="auto" autoplay loop muted playsinline>
+        <source src="/dsc106_final_project/plots/imgs/vr_environment.mp4" type="video/mp4">
+        </video>
+        <div class="fade"></div>
+        <div class="copy">
+    </div>
+    </div>  -->
+
+    <div class="intro-section">
+        <p>Now that we have familiarized ourselves with the motivation and features of this project, let's visualize our data! </p>
+    </div>
+        
+    <h2 class="section-heading">Scenarios Under Analysis</h2>
+        
+    <div class="scenario-box">
+        <div class="scenario-card scenario-1">
+            <div class="color-indicator color-1"></div>
+            <h3>Scenario 1</h3>
+            <p><span class="color-sq" style="background-color: #fc8d59;"></span>VR shifting with music cycling volume every 10s</p>
+        </div>
+        
+        <div class="scenario-card scenario-2">
+            <div class="color-indicator color-2"></div>
+            <h3>Scenario 2</h3>
+            <p><span class="color-sq" style="background-color: #99d594;"></span>Eyes closed with music at regular speed</p>
+        </div>
+    </div>
+
+        
+    <p>Let's look at <span class="action-text">each feature individually</span> and <span class="action-text">compare the trends over time</span> for both scenarios.</p>
+    
+    <div class="center">
+        <br> 
+        <div class = "MxPlotAll"> 
+            <h3>Normalized Mx for VR Shifting, Music 0.1Hz and Eyes Closed, Music Regular Over Time</h3>
+            <button id="replay-btn-mx">Restart Mx Animation</button>
+            <div class="MxPlot">
+            <svg id="static-plot-Mx" width="800" height="400"></svg>
+            <div class="MxView">
+                <div class="MxPerson1">
+                    <img class="MxPersonImage" src="/dsc106_final_project/features/images/MxHuman.png" alt="Human Outline">
+                </div>
+            </div>
+            </div>
+            <div style="text-align: left; display: block; width: 100%; padding-left: 50px;">
+                <span style="color: #fc8d59;">&#8594;</span> Oscillating pattern for forward-backward <strong>rotation</strong> aligned with 10 second oscillations in the VR and music of this scenario
+            </div>
+            <div style="text-align: left; display: block; width: 100%; padding-left: 50px;">
+                <span style="color: rgb(73, 188, 73);">&#8594;</span> Much more stable
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class = "CoPyPlotAll">
+            <h3>Normalized CoPy for VR Shifting, Music 0.1Hz and Eyes Closed, Music Regular Over Time</h3>
+            <button id="replay-btn-copy">Restart CoPy Animation</button>
+            <div class="CoPyPlot">
+                <svg id="static-plot-CoPy" width="800" height="400"></svg>
+                <div class="CoPyPlotFeet"><img class="CoPyFeet2" src="/dsc106_final_project/features/images/CoPyFeet.png" alt="Feet"></div>
+            </div>
+
+            <div style="text-align: left; display: block; width: 100%; padding-left: 50px;">
+                <span style="color: black;">&#8594;</span> Highly correlated with first plot
+            </div>
+            <div style="text-align: left; display: block; width: 100%; padding-left: 50px;">
+                <span style="color: black;">&#8594;</span> Forward-backward <strong>center of pressure</strong>
+            </div>
+            <div style="text-align: left; display: block; width: 100%; padding-left: 50px;">
+                <span style="color: #fc8d59">&#8594;</span> 10 second oscillations
+            </div>
+            <div style="text-align: left; display: block; width: 100%; padding-left: 50px;">
+                <span style="color: rgb(73, 188, 73);">&#8594;</span> Even more stable
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="MyPlotAll">
+            <h3>Normalized My for VR Shifting, Music 0.1Hz and Eyes Closed, Music Regular Over Time</h3>
+            <button id="replay-btn-my">Restart My Animation</button>
+            <div class="MyPlot">
+                <svg id="static-plot-My" width="800" height="400"></svg>
+                <div class="MyView">
+                    <div class="MyPerson1">
+                    <img class="MyPersonImage" src="/dsc106_final_project/features/images/MyHuman.png" alt="Human Outline">
+                    </div>
+                </div>
+                </div>
+                
+                <div style="text-align: left; display: block; width: 100%; padding-left: 50px;">
+                    <span style="color: black;">&#8594;</span> <strong>Side-to-side</strong> rotation
+                </div>
+                <div style="text-align: left; display: block; width: 100%; padding-left: 50px;">
+                    <span style="color: #fc8d59;">&#8594;</span> No oscillation pattern, but more overall movement
+                </div>
+                <div style="text-align: left; display: block; width: 100%; padding-left: 50px;">
+                    <span style="color: rgb(73, 188, 73);">&#8594;</span> More stable
+                </div>
+        </div>
+        <br>
+        <br>
+        <div class = "CoPxPlotAll" >
+            <h3>Normalized CoPx for VR Shifting, Music 0.1Hz and Eyes Closed, Music Regular Over Time</h3>
+            <button id="replay-btn-copx">Restart CoPx Animation</button>
+            <div class="CoPxPlot">
+                <svg id="static-plot-CoPx" width="800" height="400"></svg>
+                <div class="CoPxPlotFeet"><img class="CoPxFeet2" src="/dsc106_final_project/features/images/CoPxFeet.png" alt="Feet"></div>
+            </div>
+            <br>
+            <div style="text-align: left; display: block; width: 100%; padding-left: 50px;">
+                <span style="color: black;">&#8594;</span> Side-to-side center of pressure
+            </div>
+            <div style="text-align: left; display: block; width: 100%; padding-left: 50px;">
+                <span style="color: black;">&#8594;</span> Almost the same data as above, but flipped negative due to data encoding
+        </div>
+        </div>
+        <br>
+        <br>
+        <div class="intro-section"> 
+            <p>Now it's your turn! Play around with the data by selecting a subject and the scenario they were in to see how their movemement changes over time. Explore the difference between the two sets of features in real time!</p>
+        </div>
+        
+    </div>
+    
+    <div class = "InteractivePlot">
+        <div class="center">
+            <h2>Normalized Features for Selected Subject and Scenario</h2>
+            <div class="controls">
+                <label for="subject-select">Select Subject:</label>
+                <select id="subject-select"></select>
+                
+                <label for="file-select">Select Scenario:</label>
+                <select id="file-select"></select>
+                
+                <button id="toggleButton">Switch to Mx/My</button>
+            </div>
+        </div>
+        
+        <div class="center">
+            <svg id="main-plot" width="800" height="400"></svg>
+            <br>
+        </div>
+        <br>
+    </div>
+    <!-- <br> -->
+    <small>*Data is normalized by subtracting the mean and dividing by the standard deviation.</small>
+    <br>
+    <small>*There is an inconsistency with the animation due to the smoothing.</small>
+    <br>
+    <br>
+
+    <div id="tooltip" style="
+        position: absolute;
+        opacity: 0;
+        background-color: white;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        pointer-events: none;
+        font-size: 12px;
+    "></div>
+</section>
+    <script src="/dsc106_final_project/plots.js" type="module"></script>
+    <script src="../dsc106_final_project/features/features.js" type="module"></script>
+</body>
+</html>
+

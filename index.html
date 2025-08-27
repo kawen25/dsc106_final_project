@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" class="home">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background and Motivation</title>
+    <base href="/">
+    <link rel="stylesheet" href="/dsc106_final_project/style.css">
+    <link rel="stylesheet" href="/dsc106_final_project/features/features.css">
+    <link rel="stylesheet" href="/dsc106_final_project/takeaways/takeaways.css">
+    <link rel="stylesheet" href="/dsc106_final_project/background/background.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script> 
+</head>
+<body>
+    <div id="shake">
+    <div id="content1"></div>
+    <div id="content2"></div>
+    <div id="content3"></div>
+    <div id="content4"></div>
+    <script>
+        async function loadHTML(target, url, scriptPath) {
+        const response = await fetch(url);
+        const text = await response.text();
+        const container = document.getElementById(target);
+        container.innerHTML = text;
+
+        // Ensure scripts execute only after injection
+        setTimeout(() => {
+            console.log(`Executing ${scriptPath}`);
+            
+            const script = document.createElement("script");
+            script.src = scriptPath;
+            script.defer = true;
+            script.onload = () => console.log(`${scriptPath} loaded!`);
+            document.body.appendChild(script);
+        }, 100); // Small delay ensures DOM elements exist before running JS
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        loadHTML("content1", "/dsc106_final_project/background/index.html", "/dsc106_final_project/background/background.js");
+    });
+    document.addEventListener("DOMContentLoaded", () => {
+        loadHTML("content2", "/dsc106_final_project/features/features.html", "/dsc106_final_project/features/features.js");
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        loadHTML("content3", "/dsc106_final_project/plots/index.html", "/dsc106_final_project/plots/plots.js");
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        loadHTML("content4", "/dsc106_final_project/takeaways/takeaways.html", "/dsc106_final_project/takeaways/takeaways.js");
+    });
+    </script>
+    <script src="/dsc106_final_project/global.js" type="module"></script>
+    </div>
+</body>
+</html>

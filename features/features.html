@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features</title>
+    <style scoped>
+      /* Parallax section with background image */
+      .parallax-4 {
+          height: 40vh;
+          background-attachment: fixed;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+      }
+
+      /* Apply background image to parallax-1 */
+      .parallax-4 { 
+          background-image: url('/dsc106_final_project/features/images/balance1.jpg');
+          background-position: center center; /* Ensure it's centered properly */
+      }
+
+      /* Inner content within the parallax section */
+      .parallax-inner-4 {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 50%;
+          color: white;
+          max-width: 80%;
+          text-align: center;
+      }
+
+      #section2 h1 {
+          font-size: 30px;
+          text-align: center;
+          color: white; /* Fixed the color syntax */
+          padding: 1rem;
+          font-size: 2rem;
+          background: rgb(0, 0, 0);
+      }
+
+      p, ul {
+          font-size: 1.2rem;
+          line-height: 1.6;
+          margin: 20px;
+      }
+
+      .intro-section {
+          background-color: #f8f8f8;
+          border-left: 4px solid #2c3e50;
+          padding: 15px 20px;
+          margin-bottom: 30px;
+          border-radius: 0 5px 5px 0;
+      }
+
+      .MxContainer, .MyContainer, .CoPxContainer, .CoPyContainer {
+          margin: 40px 0;
+          padding: 25px 50px;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          background-color: #f8f8f8;
+      }
+  </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="../dsc106_final_project/style.css">
+    <link rel="stylesheet" href="/dsc106_final_project/features.css">
+</head>
+<body>  
+  <section id="section2">
+    <div class="parallax-4">
+        <div class="parallax-inner-4">
+            <h1>How to Measure Balance</h1>
+        </div>
+    </div>
+    <br>
+    <div class="intro-section">
+      <p>There are 4 different measurements used to measure balance. Let's learn about them!</p>
+    </div>
+    <div class="MxContainer">
+        <div class="MxView">
+          <div class="MxPerson">
+            <img class="MxPersonImage" src="/dsc106_final_project/features/images/person.webp" alt="Human Outline">
+            <div class="MLaxis"></div>
+            <div class="MLaxisLabel">
+                <p>Medial-lateral Axis</p>
+            </div>
+          </div>
+        </div>
+        <div class = "MxText">
+            <p><b>Mx (moment about the medial-lateral axis)</b> – A moment is a turning or twisting force. 
+              The medial-lateral axis is like a line going from one side of your body to the other 
+              (left to right). If you tip forward or backward, that's an example of a moment around this 
+              axis. A negative Mx means you're rotating in one direction (for example, forward if positive 
+              means tipping backward, or vice versa).</p>
+        </div>
+    </div>
+    <div class="MyContainer">
+        <div class="MyView">
+          <div class="MyPerson">
+            <div class="APaxisBack"></div>
+            <img class="MyPersonImage" src="/dsc106_final_project/features/images/person.webp" alt="Human Outline">
+            <div class="APaxisFront"></div>
+            <div class="APaxisLabel">
+                <p>Anterior-posterior Axis</p>
+            </div>
+          </div>
+        </div>
+        <div class = "MyText">
+            <p><b>My (moment about the anterior-posterior axis)</b> – This is another turning force, 
+              but this time around a front-to-back axis. Imagine balancing on one foot and wobbling side 
+              to side—that’s creating a moment about this axis. A negative My means you’re rotating in 
+              one direction (for example, leaning more to the left if positive means leaning to the right, 
+              or vice versa).</p>
+        </div>
+    </div>
+    <div class="CoPxContainer">
+      <div class="CoPxVis">
+        <div class="pressure-container">
+          <div id="leftPressure" class="pressure-box"></div>
+          <div id="rightPressure" class="pressure-box"></div>
+          <img class="CoPxFeet" src="/dsc106_final_project/features/images/feet2.png" alt="feet">
+        </div>
+        <input type="range" id="pressureSlider" min="0" max="100" value="100">
+        <div class="CoPxSliderLabel">Move the slider to watch the pressure shift</div>
+      </div>
+      <div class="CoPxText">
+        <p><b>COPx (medial-lateral center of pressure location)</b> – This tells us where the pressure 
+          is under your feet from side to side (left to right). If you lean more on your right foot, your
+           COPx moves to the right. A negative COPx means your weight is shifted more to one side (let’s
+            say left), while a positive value means it’s shifted to the other side (right).</p>
+      </div>
+    </div>
+    <div class="CoPyContainer">
+        <div class="CoPyVis">
+            <input type="range" id="pressureSliderY" min="0" max="100" value="100">
+            <div class="pressure-container-y">
+              <div id="upperPressure" class="pressure-box-y"></div>
+              <div id="lowerPressure" class="pressure-box-y"></div>
+              <img class="CoPyFeet" src="/dsc106_final_project/features/images/feet2.png" alt="feet">
+            </div>
+          </div>
+      <div class="CoPyText">
+        <p><b>COPy (anterior-posterior center of pressure location)</b> – This is similar, but it shows
+           where the pressure is from front to back. If you lean forward on your toes, your COPy moves 
+           forward; if you lean back on your heels, it moves backward. A negative COPy means your weight 
+           is more toward your heels, while a positive value means it’s more toward your toes.</p>
+      </div>
+    </div>
+  </section>
+  <br>
+  <script src="/dsc106_final_project/features.js"></script>
+    <!-- <script src="../global.js" type="module"></script> -->
+</body>
+</html>
